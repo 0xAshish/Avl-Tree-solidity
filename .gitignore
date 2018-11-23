@@ -1,0 +1,12 @@
+node_modules
+build
+
+test-blockchain/geth
+test-blockchain/history
+test-blockchain/data/**
+!test-blockchain/data/.gitkeep
+
+*.pid
+*.log
+
+.DS_Store
