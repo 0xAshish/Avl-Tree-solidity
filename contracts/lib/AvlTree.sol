@@ -10,7 +10,7 @@ import { IAvlTree } from "./IAvlTree.sol";
 // 
 
 
-contract AvlTree is IAvlTree {
+contract AvlTree  { // is IAvlTree {
   struct Node {
     uint256 value;
     uint256 left;

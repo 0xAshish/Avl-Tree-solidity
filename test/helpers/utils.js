@@ -34,29 +34,8 @@ export async function mineToBlockHeight(targetBlockHeight) {
 
 // Link libs
 export async function linkLibs(web3Child) {
-  const libList = [
-    contracts.ECVerify,
-    contracts.MerklePatriciaProof,
-    contracts.Merkle,
-    contracts.RLPEncode,
-    contracts.BytesLib,
-    contracts.Common
-  ]
-  const contractList = [
-    contracts.StakeManager,
-    contracts.RootChain,
-    contracts.RootToken,
-    contracts.MaticWETH,
-    contracts.StakeManagerMock,
-    contracts.TokenManagerMock,
-    contracts.IRootChainMock,
-    contracts.DepositManagerMock,
-    contracts.WithdrawManagerMock,
-    contracts.TxValidator,
-    contracts.ExitValidator,
-    contracts.ERC20Validator,
-    contracts.ERC20ValidatorMock
-  ]
+  const libList = []
+  const contractList = []
 
   const libAddresses = {}
   for (var i = 0; i < libList.length; i++) {
