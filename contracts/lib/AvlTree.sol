@@ -10,7 +10,7 @@ import { IAvlTree } from "./IAvlTree.sol";
 // 
 
 
-contract AvlTree  { // is IAvlTree {
+contract AvlTree is IAvlTree {
   struct Node {
     uint256 value;
     uint256 left;
@@ -48,9 +48,9 @@ contract AvlTree  { // is IAvlTree {
   }
   
   //should return bool ?
-  function deleteNode(uint256 value) public {
+  function remove(uint256 value) public {
     require(value > 0);
-    root = _deleteNode(root, value);
+    root = _remove(root, value);
     currentSize--;
   }
 
@@ -79,7 +79,7 @@ contract AvlTree  { // is IAvlTree {
       _root = tree[_root].right;
     }
     uint256 value = tree[_root].value;
-    root = _deleteNode(root, value);
+    root = _remove(root, value);
     currentSize--;
     return value;
   }
@@ -91,7 +91,7 @@ contract AvlTree  { // is IAvlTree {
       _root = tree[_root].left;
     }
     uint256 value = tree[_root].value;
-    root = _deleteNode(root, value);
+    root = _remove(root, value);
     currentSize--;
     return value;
   }
@@ -120,20 +120,6 @@ contract AvlTree  { // is IAvlTree {
   function getRoot() public view returns(uint256) {
     return tree[root].value;
   }
-  
-  // function _search(uint256 _root, uint256 value) private returns (bool) {
-  //   if (_root == 0 || value == 0) {  // add correct condition solidity
-  //     return false;// return true/false !? ;-)
-  //   }
-  //   return tr
-  //   // if (tree[_root].value == value) {
-  //   //   return true;
-  //   // } else if (value < tree[_root].value) {
-  //   //   return _search(tree[_root].left, value);
-  //   // } else {
-  //   //   return _search(tree[_root].right, value);
-  //   // }
-  // }
 
   function _insert(uint256 _root, uint256 value) private returns (uint256) {
     if (_root == 0) {
@@ -154,7 +140,7 @@ contract AvlTree  { // is IAvlTree {
     return balance(_root);
   }
 
-  function _deleteNode(uint256 _root, uint256 value) private returns (uint256) {
+  function _remove(uint256 _root, uint256 value) private returns (uint256) {
     uint256 temp;
     if (_root == 0) {
       return _root;
@@ -172,15 +158,15 @@ contract AvlTree  { // is IAvlTree {
         for (temp = tree[_root].right; tree[temp].left != 0; temp = tree[temp].left){}
         tree[_root].value = tree[temp].value;
         tree[temp] = tree[0];
-        tree[_root].right = _deleteNode(tree[_root].right, tree[temp].value);
+        tree[_root].right = _remove(tree[_root].right, tree[temp].value);
         return balance(_root);
   		}
   	}
 
     if (value < tree[_root].value) {
-      tree[_root].left = _deleteNode(tree[_root].left, value);
+      tree[_root].left = _remove(tree[_root].left, value);
     } else {
-      tree[_root].right = _deleteNode(tree[_root].right, value);
+      tree[_root].right = _remove(tree[_root].right, value);
     }
     return balance(_root);
   }
