@@ -61,39 +61,23 @@ contract('AvlTree', async function() {
     // treeMin.should.be.bignumber.equal(min)
   })
 
-  it('should insert 700 node randomly and get max back correctly', async function() {
+  it('should insert 100 node', async function() {
     let max = -1
     let min = 99999999999999
     let p = []
     for (let i = 99999999999100; i < 99999999999200; i++) {
-      const value = i // getRandInt(55, 99999999999999)
+      const value = i
       if (value > max) max = value
       else if (value < min) min = value
       const recpt = await avlTree.insert(value)
     }
 
     await Promise.all(p)
-    let treeMax = await avlTree.getMax()
-    let treeMin = await avlTree.getMin()
-    // treeMax.should.be.bignumber.equal(max)
-    // treeMin.should.be.bignumber.equal(min)
   })
-  it('should delete 700 node ', async function() {
-    let max = -1
-    let min = 99999999999999
-    let p = []
-    for (let i = 99999999999100; i < 99999999999800; i++) {
-      const value = i // getRandInt(55, 99999999999999)
-      // if (value > max) max = value
-      // else if (value < min) min = value
-      const recpt = await avlTree.deleteNode(value)
+  it('should delete 100 node ', async function() {
+    for (let i = 99999999999100; i < 99999999999200; i++) {
+      await avlTree.remove(i)
     }
-
-    // await Promise.all(p)
-    let treeMax = await avlTree.getMax()
-    let treeMin = await avlTree.getMin()
-    // treeMax.should.be.bignumber.equal(max)
-    // treeMin.should.be.bignumber.equal(min)
   })
 
   it('should insert one node and check balancing gas cost after 1000 node', async function() {
