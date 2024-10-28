@@ -48,7 +48,7 @@
     "eslint-plugin-standard": "4.0.0",
     "eth-gas-reporter": "0.1.12",
     "ethereumjs-wallet": "0.6.2",
-    "ethers": "4.0.13",
+    "ethers": "4.0.49",
     "safe-buffer": "5.1.2",
     "solium": "^1.1.8",
     "truffle": "^4.1.14",
